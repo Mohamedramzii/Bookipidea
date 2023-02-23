@@ -11,7 +11,12 @@ class SplashViewBody extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Image.asset(Assets.logo,width: 200,height: 200,)
+        Image.asset(Assets.logo),
+        const Text(
+          'A Library In Your Pocket',
+          textAlign: TextAlign.center,
+          style: TextStyle(fontSize: 20, letterSpacing: 2),
+        )
       ],
     );
   }
