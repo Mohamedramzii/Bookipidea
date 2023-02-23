@@ -1,3 +1,4 @@
+import 'package:book_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
 import 'custom_appbar_widget.dart';
 import 'custom_books_listview_widget.dart';
@@ -12,10 +13,12 @@ class HomeViewBody extends StatelessWidget {
     return Column(
       children: [
         CustomAppBar(width: width, height: height),
-        Padding(
-          padding:  EdgeInsets.only(left: width * 0.04),
-          child: CustomBooksListView(width:width),
-        ),
+        CustomBooksListView(width:width),
+        
+
+
+
+        
       ],
     );
   }

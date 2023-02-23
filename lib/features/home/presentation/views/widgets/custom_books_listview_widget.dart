@@ -11,13 +11,14 @@ class CustomBooksListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return SizedBox(
-      height: height * 0.3,
+      height: height * 0.35,
       child: ListView.separated(
         itemCount: 10,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return  CustomFeaturedItem(index:index);
+          return  CustomFeaturedItem(index:index, height: height, width: width,);
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(
