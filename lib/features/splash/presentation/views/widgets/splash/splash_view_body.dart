@@ -1,6 +1,8 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: non_constant_identifier_names
 
-import '../../../../../../core/utils/assets.dart';
+import 'package:book_app/features/home/presentation/views/home_view.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'slidingImageWidget.dart';
 import 'slidingTextwidget.dart';
 
@@ -23,13 +25,19 @@ class _SplashViewBodyState extends State<SplashViewBody>
     super.initState();
     _slidingImageAnimation();
     _slidingTextAnimation();
+
+    _NavigateToHomeView();
   }
-@override
+
+  
+
+  @override
   void dispose() {
     super.dispose();
     textanimationController.dispose();
     imageanimationController.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -60,4 +68,16 @@ class _SplashViewBodyState extends State<SplashViewBody>
             .animate(imageanimationController);
     imageanimationController.forward();
   }
+  
+  
+  Future<void> _NavigateToHomeView() {
+    return Future.delayed(const Duration(milliseconds: 1500), () {
+    Get.offAll(()=>const HomeView(),
+        transition: Transition.rightToLeft,
+        duration: const Duration(milliseconds: 800));
+  });
+  }
+
 }
+
+
