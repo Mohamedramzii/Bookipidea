@@ -1,8 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
-
-import 'package:book_app/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../core/utils/app_router.dart';
 import 'slidingImageWidget.dart';
 import 'slidingTextwidget.dart';
 
@@ -71,11 +70,10 @@ class _SplashViewBodyState extends State<SplashViewBody>
   
   
   Future<void> _NavigateToHomeView() {
-    return Future.delayed(const Duration(milliseconds: 1500), () {
-    Get.offAll(()=>const HomeView(),
-        transition: Transition.rightToLeft,
-        duration: const Duration(milliseconds: 800));
+    return Future.delayed(const Duration(milliseconds: 2000), () {
+    GoRouter.of(context).push(Routes.homeview);
   });
+  
   }
 
 }
