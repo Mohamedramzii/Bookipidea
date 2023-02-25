@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/utils/assets.dart';
-
+import '../../../../../../core/utils/assets.dart';
 class CustomFeaturedItem extends StatelessWidget {
   int index;
   double width, height;

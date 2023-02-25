@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/utils/assets.dart';
+import '../../../../../../../core/utils/assets.dart';
 
 class bookImageWidget extends StatelessWidget{
     

@@ -1,6 +1,7 @@
+import 'package:book_app/core/utils/app_router.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../../core/utils/assets.dart';
+import 'package:go_router/go_router.dart';
+import '../../../../../../core/utils/assets.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
@@ -15,8 +16,7 @@ class CustomAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-       padding: EdgeInsets.symmetric(
-          vertical: height * 0.04),
+      padding: EdgeInsets.symmetric(vertical: height * 0.04),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -24,7 +24,9 @@ class CustomAppBar extends StatelessWidget {
             Assets.logo,
             height: height * 0.04,
           ),
-          IconButton(onPressed: () {}, icon: Image.asset(Assets.searchIcon))
+          IconButton(
+              onPressed: () => GoRouter.of(context).push(Routes.searchview),
+              icon: Image.asset(Assets.searchIcon))
         ],
       ),
     );

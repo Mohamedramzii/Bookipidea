@@ -20,5 +20,5 @@ abstract class fontStyles {
   static TextStyle textStyle16 =
       TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500);
   static TextStyle textStyle30aleo = GoogleFonts.aleo(
-      textStyle: TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w500));
+      textStyle: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.normal));
 }

@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import 'package:book_app/core/utils/assets.dart';
 import 'package:book_app/core/utils/font_styles.dart';
-
-import 'best_seller_widgets/BEST_SELLER_LISTVIEW_ITEM_widget.dart';
-import 'best_seller_widgets/best_seller_listview_widget.dart';
-import 'custom_appbar_widget.dart';
-import 'custom_books_listview_widget.dart';
+import 'home_widgets/best_seller_widgets/best_seller_listview_widget.dart';
+import 'home_widgets/custom_appbar_widget.dart';
+import 'home_widgets/custom_books_listview_widget.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
