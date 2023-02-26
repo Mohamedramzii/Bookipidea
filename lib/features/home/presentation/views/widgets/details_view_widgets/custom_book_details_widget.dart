@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../../core/utils/assets.dart';
-import '../home_widgets/best_seller_widgets/book_rate_widget.dart';
+import '../home_widgets/newest_books_widgets/book_rate_widget.dart';
 
 class CustomBookDetailsWidget extends StatelessWidget {
   const CustomBookDetailsWidget({super.key});
