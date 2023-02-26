@@ -6,7 +6,7 @@ import 'package:book_app/core/utils/font_styles.dart';
 class CustomButtonWidget extends StatelessWidget {
   const CustomButtonWidget({
     Key? key,
-     this.fontsize,
+    this.fontsize,
     required this.buttontext,
     required this.backgroundColor,
     required this.textColor,
@@ -31,8 +31,10 @@ class CustomButtonWidget extends StatelessWidget {
             )),
         child: Text(
           buttontext,
-          style: fontStyles.textStyle18
-              .copyWith(color: textColor, fontWeight: FontWeight.w900,fontSize: fontsize),
+          style: fontStyles.textStyle18.copyWith(
+              color: textColor,
+              fontWeight: FontWeight.w900,
+              fontSize: fontsize),
         ),
       ),
     );

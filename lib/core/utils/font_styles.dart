@@ -9,10 +9,8 @@ abstract class fontStyles {
 
   static TextStyle textStyle20aleo = GoogleFonts.aleo(
       textStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.normal));
-  static TextStyle textStyle20 =
-      GoogleFonts.montserrat(
-        textStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w900)
-      );
+  static TextStyle textStyle20 = GoogleFonts.montserrat(
+      textStyle: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w900));
 
   static TextStyle textStyle14 = TextStyle(
       fontSize: 14.sp, fontWeight: FontWeight.normal, color: KtextStyle14Color);

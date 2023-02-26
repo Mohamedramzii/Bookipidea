@@ -21,11 +21,11 @@ class BookListViewItem_Widget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         GoRouter.of(context).push(Routes.detailsview);
       },
       child: Padding(
-        padding: EdgeInsets.only( right: 20.w),
+        padding: EdgeInsets.only(right: 20.w),
         child: SizedBox(
           height: 125,
           // width: 70 ,

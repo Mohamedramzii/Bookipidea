@@ -18,7 +18,11 @@ class CustomBooksListView extends StatelessWidget {
         itemCount: 10,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return  CustomFeaturedItem(index:index, height: height, width: width,);
+          return CustomFeaturedItem(
+            index: index,
+            height: height,
+            width: width,
+          );
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(

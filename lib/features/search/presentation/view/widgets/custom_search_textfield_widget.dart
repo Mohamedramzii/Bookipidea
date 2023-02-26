@@ -22,9 +22,9 @@ class CustomSearchTextField extends StatelessWidget {
                 ),
           enabledBorder: _BuildOutlineInputBorder(),
           focusedBorder: _BuildOutlineInputBorder()),
-          onChanged: (value){
-            istyping=true;
-          },
+      onChanged: (value) {
+        istyping = true;
+      },
     );
   }
 

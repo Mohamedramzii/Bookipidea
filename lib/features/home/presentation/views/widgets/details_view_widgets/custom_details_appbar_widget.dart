@@ -10,7 +10,9 @@ class CustomDetailsAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(top: 45.h,),
+      padding: EdgeInsets.only(
+        top: 45.h,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

@@ -13,9 +13,7 @@ class CustomBooksYouAlsoLike_ListViewItem extends StatelessWidget {
     return Container(
       width: 70.w,
       height: 112.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12)
-      ),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       child: Image.asset(Assets.booktest),
     );
   }

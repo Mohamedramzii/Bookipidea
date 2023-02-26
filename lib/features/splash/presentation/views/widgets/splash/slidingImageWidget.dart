@@ -1,4 +1,13 @@
-import 'package:flutter/material.dart' show AnimatedBuilder, Animation, BuildContext, Image, Offset, SlideTransition, StatelessWidget, Widget;
+import 'package:flutter/material.dart'
+    show
+        AnimatedBuilder,
+        Animation,
+        BuildContext,
+        Image,
+        Offset,
+        SlideTransition,
+        StatelessWidget,
+        Widget;
 
 import '../../../../../../core/utils/assets.dart';
 
@@ -16,8 +25,7 @@ class slidingImageWidget extends StatelessWidget {
         animation: imageslidingAnimation,
         builder: (context, _) {
           return SlideTransition(
-              position: imageslidingAnimation,
-              child: Image.asset(Assets.logo));
+              position: imageslidingAnimation, child: Image.asset(Assets.logo));
         });
   }
 }

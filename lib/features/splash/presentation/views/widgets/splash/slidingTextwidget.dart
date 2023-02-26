@@ -24,4 +24,3 @@ class slidingTextWidget extends StatelessWidget {
         });
   }
 }
-
