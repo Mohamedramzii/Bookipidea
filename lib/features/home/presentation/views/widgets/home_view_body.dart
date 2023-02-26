@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:book_app/core/utils/font_styles.dart';
-import 'home_widgets/best_seller_widgets/best_seller_listview_widget.dart';
+import 'home_widgets/best_seller_widgets/BooksListView_Widget.dart';
 import 'home_widgets/custom_appbar_widget.dart';
 import 'home_widgets/custom_books_listview_widget.dart';
 
