@@ -19,6 +19,7 @@ dependencies:
   google_fonts: ^4.0.3
   go_router: ^6.2.0
   equatable: ^2.0.5
+  dartz: ^0.10.1
 
 dev_dependencies:
   flutter_test:
