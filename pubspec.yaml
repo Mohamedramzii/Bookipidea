@@ -22,6 +22,7 @@ dependencies:
   dartz: ^0.10.1
   dio: ^5.0.1
   flutter_bloc: ^8.1.2
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:
