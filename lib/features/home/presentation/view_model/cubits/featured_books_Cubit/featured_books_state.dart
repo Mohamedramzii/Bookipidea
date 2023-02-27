@@ -10,7 +10,7 @@ abstract class FeaturedBooksState extends Equatable {
 class FeaturedBooksInitial extends FeaturedBooksState {}
 
 class FeaturedBooksLoadingState extends FeaturedBooksState {}
-  
+
 class FeaturedBooksSuccessState extends FeaturedBooksState {
   final List<BookModel> books;
   const FeaturedBooksSuccessState({

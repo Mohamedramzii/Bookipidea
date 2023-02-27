@@ -1,4 +1,7 @@
+import 'package:book_app/core/common_widgets/custom_error_message.dart';
+import 'package:book_app/features/home/presentation/view_model/cubits/newest_books_Cubit/newest_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'Newest_Books_LISTVIEW_ITEM_widget.dart';
@@ -13,21 +16,33 @@ class bestSellerListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      // shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: EdgeInsets.zero,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        return BookListViewItem_Widget(
-          width: width,
-          height: height,
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(
-          height: 20.h,
-        );
+    return BlocBuilder<NewestBooksCubit, NewestBooksState>(
+      builder: (context, state) {
+        if (state is NewestBooksSuccessState) {
+          return ListView.separated(
+            // shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
+            itemCount: 10,
+            itemBuilder: (context, index) {
+              return BookListViewItem_Widget(
+                width: width,
+                height: height,
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 20.h,
+              );
+            },
+          );
+        } else if (state is NewestBooksFailureState) {
+          return CustomErrorWidget(text: state.errMessage);
+        } else {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
       },
     );
   }

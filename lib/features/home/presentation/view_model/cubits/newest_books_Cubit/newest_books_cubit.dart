@@ -1,20 +1,19 @@
 import 'package:bloc/bloc.dart';
-import 'package:book_app/features/home/data/models/book_model/book_model.dart';
+import 'package:book_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:book_app/features/home/data/repos/home_repo.dart';
-
+import '../../../../data/models/book_model/book_model.dart';
 part 'newest_books_state.dart';
 
 class NewestBooksCubit extends Cubit<NewestBooksState> {
-  HomeRepo homeRepo;
+  HomeRepoImpl homeRepoImpl;
   NewestBooksCubit(
-    this.homeRepo,
+    this.homeRepoImpl,
   ) : super(NewestBooksInitial());
 
   Future<void> fetchNewestBooksFromServer() async {
     emit(NewestBooksLoadingState());
-    var result = await homeRepo.fetchNewestBooks();
+    var result = await homeRepoImpl.fetchNewestBooks();
 
     result.fold(
       (failure) {

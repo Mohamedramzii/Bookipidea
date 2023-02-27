@@ -14,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 void main() {
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
@@ -29,14 +30,11 @@ class MyApp extends StatelessWidget {
       builder: (context, _) => MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => FeaturedBooksCubit(
-              getIt.get<HomeRepoImpl>()
-            ),
-          ),
+              create: (context) => FeaturedBooksCubit(getIt.get<HomeRepoImpl>())
+                ..fetchFeaturedBooksFromServer()),
           BlocProvider(
-            create: (context) => NewestBooksCubit(
-             getIt.get<HomeRepoImpl>()
-            ),
+            create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())
+              ..fetchNewestBooksFromServer(),
           ),
         ],
         child: MaterialApp.router(

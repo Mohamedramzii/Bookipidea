@@ -1,4 +1,7 @@
+import 'package:book_app/core/common_widgets/custom_error_message.dart';
+import 'package:book_app/features/home/presentation/view_model/cubits/featured_books_Cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'custom_featured_item_widget.dart';
 
@@ -12,24 +15,37 @@ class CustomBooksListView extends StatelessWidget {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    return SizedBox(
-      height: height * 0.35,
-      child: ListView.separated(
-        itemCount: 10,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return CustomFeaturedItem(
-            index: index,
-            height: height,
-            width: width,
-          );
-        },
-        separatorBuilder: (BuildContext context, int index) {
+    return BlocBuilder<FeaturedBooksCubit, FeaturedBooksState>(
+      builder: (context, state) {
+        if (state is FeaturedBooksSuccessState) {
           return SizedBox(
-            width: width * 0.04,
+            height: height * 0.35,
+            child: ListView.separated(
+              itemCount: state.books.length,
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return CustomFeaturedItem(
+                  imageurl:
+                      state.books[index].volumeInfo!.imageLinks!.thumbnail!,
+                  height: height,
+                  width: width,
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  width: width * 0.04,
+                );
+              },
+            ),
           );
-        },
-      ),
+        } else if (state is FeaturedBooksFailureState) {
+          return CustomErrorWidget(text: state.errMessage);
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
     );
   }
 }

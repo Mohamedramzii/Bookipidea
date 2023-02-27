@@ -1,47 +1,58 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/utils/assets.dart';
-
 class CustomFeaturedItem extends StatelessWidget {
-  int index;
   double width, height;
+  final String imageurl;
   CustomFeaturedItem({
     Key? key,
-    required this.index,
-    required this.width,
     required this.height,
+    required this.width,
+    required this.imageurl,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: index != 0
-              ? EdgeInsets.only(top: height * 0.03)
-              : const EdgeInsets.only(top: 0),
-          width: index == 0 ? width * 0.42 : width * 0.37,
-          height: index == 0 ? height * 0.32 : height * 0.26,
-          child: Image.asset(
-            Assets.booktest,
-            fit: BoxFit.fill,
-          ),
-        ),
-        Positioned(
-          bottom: index == 0 ? height * 0.04 : height * 0.07,
-          right: index == 0 ? width * 0.02 : width * 0.02,
-          child: Container(
-            height: 45,
-            width: 45,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle, color: Colors.white.withOpacity(0.6)),
-            child: const Icon(
-              Icons.play_arrow,
-              color: Colors.white,
-            ),
-          ),
-        )
-      ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: CachedNetworkImage(
+          imageUrl: imageurl,
+          imageBuilder: (context, imageProvider) => Stack(
+                children: [
+                  Container(
+                    width: width * 0.50,
+                    height: height * 0.32,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Colors.white),
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fill,
+                        )),
+                  ),
+                  Positioned(
+                      right: width * 0.03,
+                      bottom: height * 0.04,
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.green, width: 3),
+                        ),
+                        child: const Icon(
+                          Icons.menu_book_outlined,
+                          color: Colors.green,
+                        ),
+                      ))
+                ],
+              ),
+          placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(),
+              ),
+          errorWidget: (context, url, error) =>
+              const Icon(Icons.ac_unit_outlined)),
     );
   }
 }
