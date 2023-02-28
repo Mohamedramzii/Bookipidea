@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../home/presentation/views/widgets/home_widgets/newest_books_widgets/Newest_Books_LISTVIEW_ITEM_widget.dart';
-
 class SearchResultListView extends StatelessWidget {
   const SearchResultListView({super.key});
 
@@ -17,10 +14,11 @@ class SearchResultListView extends StatelessWidget {
         padding: EdgeInsets.zero,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return BookListViewItem_Widget(
-            width: width,
-            height: height,
-          );
+          return Text('data');
+          // return BookListViewItem_Widget(
+          //   width: width,
+          //   height: height,
+          // );
         },
         separatorBuilder: (BuildContext context, int index) {
           return SizedBox(

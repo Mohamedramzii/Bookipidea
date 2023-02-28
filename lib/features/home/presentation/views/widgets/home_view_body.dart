@@ -14,8 +14,10 @@ class HomeViewBody extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
 
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
+          
           child: Padding(
             padding: EdgeInsets.symmetric(
                 horizontal: width * 0.05, vertical: height * 0.04),
@@ -27,7 +29,7 @@ class HomeViewBody extends StatelessWidget {
                 SizedBox(
                   height: height * 0.03,
                 ),
-                Text('Newest',
+                Text('Newest Books',
                     textAlign: TextAlign.start, style: fontStyles.textStyle18),
               ],
             ),

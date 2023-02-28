@@ -1,10 +1,13 @@
 // ignore_for_file: camel_case_types
 
-import 'package:book_app/core/utils/app_router.dart';
-import 'package:book_app/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+
+import 'package:book_app/core/utils/app_router.dart';
+import 'package:book_app/core/utils/font_styles.dart';
+import 'package:book_app/features/home/data/models/book_model/book_model.dart';
+
 import 'book_authoName_widget.dart';
 import 'book_image_widget.dart';
 import 'book_name_widget.dart';
@@ -12,10 +15,12 @@ import 'book_rate_widget.dart';
 
 class BookListViewItem_Widget extends StatelessWidget {
   double width, height;
+  BookModel bookModel;
   BookListViewItem_Widget({
     Key? key,
-    required this.width,
     required this.height,
+    required this.width,
+    required this.bookModel,
   }) : super(key: key);
 
   @override
@@ -33,7 +38,9 @@ class BookListViewItem_Widget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               //image
-              bookImageWidget(),
+              bookImageWidget(
+                imageurl: bookModel.volumeInfo!.imageLinks!.thumbnail!,
+              ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(left: 30.w),
@@ -42,9 +49,15 @@ class BookListViewItem_Widget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       //book name
-                      bookNameWidget(width: width),
+                      bookNameWidget(
+                        width: width,
+                        text: bookModel.volumeInfo!.title!,
+                      ),
                       //author name
-                      bookAuthorNameWidget(height: height),
+                      bookAuthorNameWidget(
+                        height: height,
+                        text: bookModel.volumeInfo!.authors![0],
+                      ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: height * 0.003),
                         child: Row(
@@ -52,10 +65,13 @@ class BookListViewItem_Widget extends StatelessWidget {
                           children: [
                             //price
                             Text(
-                              '19.99 €',
+                              'Free',
                               style: fontStyles.textStyle20,
                             ),
-                            ratingWidget(width: width)
+                            ratingWidget(
+                              width: width,
+                              bookcount: bookModel.volumeInfo!.pageCount!,
+                            )
                           ],
                         ),
                       )

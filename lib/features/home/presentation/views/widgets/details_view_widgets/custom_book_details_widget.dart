@@ -43,7 +43,7 @@ class CustomBookDetailsWidget extends StatelessWidget {
 
         //Rating
         ratingWidget(
-          width: width,
+          width: width, bookcount: 300,
         ),
         SizedBox(
           height: 37.h,
