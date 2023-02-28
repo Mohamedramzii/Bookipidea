@@ -10,17 +10,23 @@ class bookAuthorNameWidget extends StatelessWidget {
   }) : super(key: key);
 
   final double height;
-  final String text;
+  final List<String> text;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: height * 0.003),
-      child: Text(
-       text,
-        style: fontStyles.textStyle14.copyWith(fontWeight: FontWeight.w500),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
+      child: Wrap(
+        direction: Axis.vertical,
+        children: List.generate(
+            text.length,
+            (index) => Text(
+                  text[index],
+                  style: fontStyles.textStyle14
+                      .copyWith(fontWeight: FontWeight.w500),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                )).toList(),
       ),
     );
   }

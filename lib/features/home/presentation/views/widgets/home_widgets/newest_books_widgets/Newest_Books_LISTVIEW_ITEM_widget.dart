@@ -56,7 +56,7 @@ class BookListViewItem_Widget extends StatelessWidget {
                       //author name
                       bookAuthorNameWidget(
                         height: height,
-                        text: bookModel.volumeInfo!.authors![0],
+                        text: bookModel.volumeInfo!.authors!,
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: height * 0.003),
