@@ -1,8 +1,13 @@
 import 'package:book_app/core/common_widgets/custom_error_message.dart';
+import 'package:book_app/core/utils/app_router.dart';
 import 'package:book_app/features/home/presentation/view_model/cubits/featured_books_Cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../../../../core/utils/assets.dart';
+import '../../../../data/models/book_model/book_model.dart';
 import 'custom_featured_item_widget.dart';
 
 class CustomBooksListView extends StatelessWidget {
@@ -26,11 +31,17 @@ class CustomBooksListView extends StatelessWidget {
               physics: const BouncingScrollPhysics(),
               shrinkWrap: true,
               itemBuilder: (context, index) {
-                return CustomFeaturedItem(
-                  imageurl:
-                      state.books[index].volumeInfo!.imageLinks!.thumbnail!,
-                  height: height,
-                  width: width,
+                return GestureDetector(
+                  onTap: () {
+                    GoRouter.of(context).push(Routes.detailsview,
+                        extra: state.books[index]);
+                  },
+                  child: CustomFeaturedItem(
+                    imageurl:
+                        state.books[index].volumeInfo!.imageLinks!.thumbnail!,
+                    height: height,
+                    width: width,
+                  ),
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
@@ -43,7 +54,12 @@ class CustomBooksListView extends StatelessWidget {
         } else if (state is FeaturedBooksFailureState) {
           return CustomErrorWidget(text: state.errMessage);
         } else {
-          return const Center(child: CircularProgressIndicator());
+          return Center(
+            child: LottieBuilder.asset(
+              Assets.loadingIcon2,
+              width: 150,
+            ),
+          );
         }
       },
     );

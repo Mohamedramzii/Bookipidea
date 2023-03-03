@@ -27,7 +27,7 @@ class BookListViewItem_Widget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        GoRouter.of(context).push(Routes.detailsview);
+        GoRouter.of(context).push(Routes.detailsview,extra: bookModel);
       },
       child: Padding(
         padding: EdgeInsets.only(right: 20.w),

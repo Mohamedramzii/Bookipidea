@@ -1,20 +1,27 @@
 // ignore_for_file: camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../../../../../core/utils/assets.dart';
 
 class CustomBooksYouAlsoLike_ListViewItem extends StatelessWidget {
-  const CustomBooksYouAlsoLike_ListViewItem({super.key});
+  const CustomBooksYouAlsoLike_ListViewItem({
+    Key? key,
+    required this.imageurl,
+  }) : super(key: key);
+  final String imageurl;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 70.w,
-      height: 112.h,
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
-      child: Image.asset(Assets.booktest),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Image.network(
+        imageurl,
+        // loadingBuilder: (context, child, loadingProgress) => const Center(
+        //   child: LoadingWidget(),
+        // ),
+        errorBuilder: (context, error, stackTrace) => const Center(
+          child: Icon(Icons.error),
+        ),
+      ),
     );
   }
 }

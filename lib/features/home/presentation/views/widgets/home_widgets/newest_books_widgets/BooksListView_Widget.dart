@@ -3,7 +3,9 @@ import 'package:book_app/features/home/presentation/view_model/cubits/newest_boo
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
+import '../../../../../../../core/common_widgets/custom_loading_widget.dart';
 import 'Newest_Books_LISTVIEW_ITEM_widget.dart';
 
 class bestSellerListView extends StatelessWidget {
@@ -40,11 +42,10 @@ class bestSellerListView extends StatelessWidget {
         } else if (state is NewestBooksFailureState) {
           return CustomErrorWidget(text: state.errMessage);
         } else {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const LoadingWidget();
         }
       },
     );
   }
 }
+

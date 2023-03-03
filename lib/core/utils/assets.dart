@@ -4,4 +4,6 @@ class Assets {
   static const booktest = 'assets/images/Book.png';
   static const closeIcon = 'assets/images/ic close.png';
   static const cartIcon = 'assets/images/ic cart.png';
+  static const loadingIcon = 'assets/images/loading.json';
+  static const loadingIcon2 = 'assets/images/loading2.json';
 }

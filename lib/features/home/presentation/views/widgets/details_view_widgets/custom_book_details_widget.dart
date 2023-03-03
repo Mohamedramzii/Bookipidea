@@ -1,14 +1,16 @@
-import 'package:book_app/core/common_widgets/Custom_Button.dart';
-import 'package:book_app/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../../../core/utils/assets.dart';
-import '../home_widgets/newest_books_widgets/book_rate_widget.dart';
+import 'package:book_app/core/common_widgets/Custom_Button.dart';
+import 'package:book_app/core/utils/font_styles.dart';
+import '../../../../data/models/book_model/book_model.dart';
 
 class CustomBookDetailsWidget extends StatelessWidget {
-  const CustomBookDetailsWidget({super.key});
-
+  const CustomBookDetailsWidget({
+    Key? key,
+    required this.bookModel,
+  }) : super(key: key);
+  final BookModel bookModel;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -16,35 +18,47 @@ class CustomBookDetailsWidget extends StatelessWidget {
       children: [
         Padding(
           padding: EdgeInsets.only(top: 30.h, bottom: 40.h),
-          child: Container(
-            width: 160.w,
+          child: SizedBox(
+            width: 200.w,
             height: 245.h,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+            child: Hero(
+              tag:bookModel.volumeInfo!.imageLinks!.thumbnail!,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15),
+                  child: Image.network(
+                    bookModel.volumeInfo!.imageLinks!.thumbnail!,
+                    fit: BoxFit.fill,
+                  )),
             ),
-            child: Image.asset(Assets.booktest),
           ),
         ),
 
         //Book Name
         Text(
-          'The Jungle Book',
+          bookModel.volumeInfo!.title ?? 'Book Name',
           style: fontStyles.textStyle30aleo,
+          textAlign: TextAlign.center,
         ),
         // Author Name
         Padding(
           padding: EdgeInsets.only(top: 4.h, bottom: 16.h),
-          child: Text(
-            'Rudyard Kipling',
-            style:
-                fontStyles.textStyle18.copyWith(color: const Color(0xff707070)),
+          child: Wrap(
+            direction: Axis.vertical,
+            children: List.generate(
+                bookModel.volumeInfo!.authors!.length,
+                (index) => Text(
+                      bookModel.volumeInfo!.authors![index],
+                      style: fontStyles.textStyle18
+                          .copyWith(color: const Color(0xff707070)),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.center,
+                    )).toList(),
           ),
         ),
 
         //Rating
-        ratingWidget(
-          width: width, bookcount: 300,
-        ),
+        PagesCountWidget(width: width,pagecount: bookModel.volumeInfo!.pageCount ?? 0,),
         SizedBox(
           height: 37.h,
         ),
@@ -77,3 +91,52 @@ class CustomBookDetailsWidget extends StatelessWidget {
     );
   }
 }
+
+class PagesCountWidget extends StatelessWidget {
+  final double width;
+  final int pagecount;
+  const PagesCountWidget({
+    Key? key,
+    required this.width,
+    required this.pagecount,
+  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.my_library_books_rounded,
+          color: Colors.white,
+        ),
+        SizedBox(
+          width: width * 0.007,
+        ),
+        //rate
+        Text(
+          '$pagecount Pages' ,
+          style: fontStyles.textStyle16,
+        )
+      ],
+    );
+  }
+}
+   
+//     Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         //icon
+//         const Icon(
+//           Icons.my_library_books_rounded,
+//           color: Colors.white,
+//         ),
+//         SizedBox(
+//           width: width * 0.007,
+//         ),
+//         //rate
+//         Text(
+//           'pages',
+//           style: fontStyles.textStyle16,
+//         ));
+//   }
+// }
