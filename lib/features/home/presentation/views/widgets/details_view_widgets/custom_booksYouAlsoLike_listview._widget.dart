@@ -4,10 +4,12 @@
 
 import 'package:book_app/core/common_widgets/custom_error_message.dart';
 import 'package:book_app/core/common_widgets/custom_loading_widget.dart';
+import 'package:book_app/core/utils/app_router.dart';
 import 'package:book_app/features/home/presentation/view_model/cubits/similar_books_Cubit/similar_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 
 import 'custom_booksYouAlsoLike_listviewITEM.dart';
 
@@ -26,9 +28,14 @@ class CustomBooksYouAlsoLike_ListViewWidget extends StatelessWidget {
                 itemCount: 10,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  return CustomBooksYouAlsoLike_ListViewItem(
-                    imageurl:
-                        state.books[index].volumeInfo!.imageLinks?.thumbnail ?? '',
+                  return GestureDetector(
+                    onTap: () => GoRouter.of(context)
+                        .push(Routes.detailsview, extra: state.books[index]),
+                    child: CustomBooksYouAlsoLike_ListViewItem(
+                      imageurl: state
+                              .books[index].volumeInfo!.imageLinks?.thumbnail ??
+                          '',
+                    ),
                   );
                 },
                 separatorBuilder: (BuildContext context, int index) {

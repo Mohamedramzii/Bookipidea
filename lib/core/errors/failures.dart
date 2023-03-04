@@ -32,7 +32,7 @@ class ServerFailure extends Failures {
       //       'Something Error happened with the connection, Please try later!');
 
       case DioErrorType.unknown:
-        return ServerFailure('No Internet Connection');
+        return ServerFailure('No Internet Connection, Swipe down to reload');
       default:
       return ServerFailure('Something Error happened!!');
     }
@@ -44,7 +44,7 @@ class ServerFailure extends Failures {
     } else if (statusCode == 404) {
       return ServerFailure(
           'Error 404! Request Not Found, Please try again later!');
-    } else if (statusCode == 500) {
+    } else if (statusCode == 500 || statusCode == 502) {
       return ServerFailure('Internal Server Error, Please try again later!');
     } else {
       return ServerFailure(

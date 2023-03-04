@@ -22,7 +22,7 @@ class Custom_BooksYouAlsoLike_Widget extends StatelessWidget {
           height: 50.h,
         ),
         Text(
-          'You can also like',
+          'You may also like',
           textAlign: TextAlign.start,
           style: fontStyles.textStyle14.copyWith(color: Colors.white),
         ),

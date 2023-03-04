@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:book_app/core/common_widgets/Custom_Button.dart';
 import 'package:book_app/core/utils/font_styles.dart';
 import '../../../../data/models/book_model/book_model.dart';
+import 'custom_readmoretext_widget.dart';
 
 class CustomBookDetailsWidget extends StatelessWidget {
   const CustomBookDetailsWidget({
@@ -15,6 +16,7 @@ class CustomBookDetailsWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Column(
+      // mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.only(top: 30.h, bottom: 40.h),
@@ -59,6 +61,10 @@ class CustomBookDetailsWidget extends StatelessWidget {
 
         //Rating
         PagesCountWidget(width: width,pagecount: bookModel.volumeInfo!.pageCount ?? 0,),
+        SizedBox(height: 15.h,),
+        CustomReadMoreWidget(
+              description: bookModel.volumeInfo!.description!,
+            ),
         SizedBox(
           height: 37.h,
         ),
@@ -73,7 +79,7 @@ class CustomBookDetailsWidget extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(16),
                   bottomLeft: Radius.circular(16)),
-              buttontext: '19.99€',
+              buttontext: '\$Free',
             )),
             Expanded(
                 child: CustomButtonWidget(
@@ -82,7 +88,7 @@ class CustomBookDetailsWidget extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topRight: Radius.circular(16),
                   bottomRight: Radius.circular(16)),
-              buttontext: 'Free preview',
+              buttontext: 'Preview',
               fontsize: 16,
             )),
           ],
