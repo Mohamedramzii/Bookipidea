@@ -1,16 +1,21 @@
-# book_app
+# Bookipidea
 
 A new Flutter project.
 
-## Getting Started
+### I implemented it using:
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+#### - Clean Architecture Pattern.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### - Bloc State management (Cubit).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### - Google Books API 
+
+#### - Dio.
+
+#### - Get It.
+
+#### - Dartz.
+
+
+For A Demo: https://drive.google.com/file/d/1VfRdCiLJz80aTCipUaUHx-Vav58IF9Gx/view?usp=share_link
