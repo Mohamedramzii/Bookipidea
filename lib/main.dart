@@ -7,6 +7,7 @@ import 'package:book_app/core/utils/service_locator.dart';
 import 'package:book_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:book_app/features/home/presentation/view_model/cubits/featured_books_Cubit/featured_books_cubit.dart';
 import 'package:book_app/features/home/presentation/view_model/cubits/newest_books_Cubit/newest_books_cubit.dart';
+import 'package:book_app/features/search/presentation/viewmodel/cubits/cubit/search_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
             create: (context) => NewestBooksCubit(getIt.get<HomeRepoImpl>())
               ..fetchNewestBooksFromServer(),
           ),
+      
         ],
         child: MaterialApp.router(
           routerConfig: App_Router.router,

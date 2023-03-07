@@ -1,6 +1,8 @@
+import 'package:book_app/core/utils/assets.dart';
 import 'package:book_app/core/utils/font_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
 class CustomErrorWidget extends StatelessWidget {
   const CustomErrorWidget({
@@ -22,9 +24,21 @@ class CustomErrorWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
-              const Icon(Icons.error_outline,color: Colors.red,size: 60,),
-              SizedBox(height: 20.h,),
-              Text(text,style: fontStyles.textStyle20,textAlign: TextAlign.center,)
+              SizedBox(
+                  height: 60.h,
+                  width: 60.w,
+                  child: LottieBuilder.asset(
+                    Assets.connection_error,
+                    fit: BoxFit.fill,
+                  )),
+              SizedBox(
+                height: 15.h,
+              ),
+              Text(
+                text,
+                style: fontStyles.textStyle20,
+                textAlign: TextAlign.center,
+              )
             ],
           ),
         ),

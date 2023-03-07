@@ -1,9 +1,18 @@
+// ignore_for_file: unnecessary_null_comparison
+
+import 'package:book_app/core/utils/app_router.dart';
+import 'package:book_app/features/home/presentation/view_model/cubits/similar_books_Cubit/similar_books_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:book_app/core/common_widgets/Custom_Button.dart';
 import 'package:book_app/core/utils/font_styles.dart';
+import 'package:go_router/go_router.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../../data/models/book_model/book_model.dart';
+import 'custom_pageCount_widget.dart';
 import 'custom_readmoretext_widget.dart';
 
 class CustomBookDetailsWidget extends StatelessWidget {
@@ -24,7 +33,7 @@ class CustomBookDetailsWidget extends StatelessWidget {
             width: 200.w,
             height: 245.h,
             child: Hero(
-              tag:bookModel.volumeInfo!.imageLinks!.thumbnail!,
+              tag: bookModel.volumeInfo!.imageLinks!.thumbnail!,
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(15),
                   child: Image.network(
@@ -60,19 +69,24 @@ class CustomBookDetailsWidget extends StatelessWidget {
         ),
 
         //Rating
-        PagesCountWidget(width: width,pagecount: bookModel.volumeInfo!.pageCount ?? 0,),
-        SizedBox(height: 15.h,),
+        PagesCountWidget(
+          width: width,
+          pagecount: bookModel.volumeInfo!.pageCount ?? 0,
+        ),
+        SizedBox(
+          height: 15.h,
+        ),
         CustomReadMoreWidget(
-              description: bookModel.volumeInfo!.description!,
-            ),
+          description: bookModel.volumeInfo!.description!,
+        ),
         SizedBox(
           height: 37.h,
         ),
 
         //Price and Preview Button
         Row(
-          children: const [
-            Expanded(
+          children: [
+            const Expanded(
                 child: CustomButtonWidget(
               backgroundColor: Colors.white,
               textColor: Colors.black,
@@ -83,13 +97,22 @@ class CustomBookDetailsWidget extends StatelessWidget {
             )),
             Expanded(
                 child: CustomButtonWidget(
-              backgroundColor: Color(0xffEF8262),
+              onpressed: ()  {
+                Uri uri = Uri.parse(bookModel.volumeInfo!.previewLink!);
+                bookModel.volumeInfo!.previewLink! == null
+                    ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('No Available PDF to preview!')))
+                    : _launchInBrowser(uri);
+              },
+              backgroundColor: const Color(0xffEF8262),
               textColor: Colors.white,
-              borderRadius: BorderRadius.only(
+              borderRadius: const BorderRadius.only(
                   topRight: Radius.circular(16),
                   bottomRight: Radius.circular(16)),
-              buttontext: 'Preview',
-              fontsize: 16,
+              buttontext: bookModel.volumeInfo!.previewLink! == null
+                  ? 'Preview Not Available'
+                  : 'Preview',
+              fontsize: bookModel.volumeInfo!.previewLink! == null ? 12 : 16,
             )),
           ],
         )
@@ -98,51 +121,11 @@ class CustomBookDetailsWidget extends StatelessWidget {
   }
 }
 
-class PagesCountWidget extends StatelessWidget {
-  final double width;
-  final int pagecount;
-  const PagesCountWidget({
-    Key? key,
-    required this.width,
-    required this.pagecount,
-  }) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(
-          Icons.my_library_books_rounded,
-          color: Colors.white,
-        ),
-        SizedBox(
-          width: width * 0.007,
-        ),
-        //rate
-        Text(
-          '$pagecount Pages' ,
-          style: fontStyles.textStyle16,
-        )
-      ],
-    );
+Future<void> _launchInBrowser(Uri url) async {
+  if (!await launchUrl(
+    url,
+    mode: LaunchMode.externalApplication,
+  )) {
+    throw Exception('Could not launch $url');
   }
 }
-   
-//     Row(
-//       mainAxisAlignment: MainAxisAlignment.center,
-//       children: [
-//         //icon
-//         const Icon(
-//           Icons.my_library_books_rounded,
-//           color: Colors.white,
-//         ),
-//         SizedBox(
-//           width: width * 0.007,
-//         ),
-//         //rate
-//         Text(
-//           'pages',
-//           style: fontStyles.textStyle16,
-//         ));
-//   }
-// }

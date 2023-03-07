@@ -1,14 +1,15 @@
 // ignore_for_file: camel_case_types
 
+import 'package:book_app/core/api_services.dart';
 import 'package:book_app/core/utils/service_locator.dart';
 import 'package:book_app/features/home/data/repos/home_repo_impl.dart';
 import 'package:book_app/features/home/presentation/view_model/cubits/similar_books_Cubit/similar_books_cubit.dart';
 import 'package:book_app/features/home/presentation/views/home_view.dart';
+import 'package:book_app/features/search/data/search_repos/search_repoImpl.dart';
 import 'package:book_app/features/search/presentation/view/seachview.dart';
-import 'package:flutter/material.dart';
+import 'package:book_app/features/search/presentation/viewmodel/cubits/cubit/search_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../features/home/data/models/book_model/book_model.dart';
 import '../../features/home/presentation/views/details_view.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
@@ -32,7 +33,10 @@ abstract class App_Router {
             ))),
     GoRoute(
         path: Routes.searchview,
-        builder: (context, state) => const SearchView()),
+        builder: (context, state) => BlocProvider(
+              create: (context) => SearchCubit(getIt.get<SearchRepoImpl>()),
+              child: const SearchView(),
+            )),
   ]);
 }
 

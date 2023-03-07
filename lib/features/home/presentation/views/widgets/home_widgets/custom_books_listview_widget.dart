@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../../../../core/utils/assets.dart';
-import '../../../../data/models/book_model/book_model.dart';
 import 'custom_featured_item_widget.dart';
 
 class CustomBooksListView extends StatelessWidget {

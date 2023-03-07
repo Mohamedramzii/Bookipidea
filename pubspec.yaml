@@ -26,6 +26,8 @@ dependencies:
   lottie: ^2.2.0
   read_more_text: ^0.0.5
   shimmr: ^0.0.1
+  syncfusion_flutter_pdfviewer: ^20.4.52
+  url_launcher: ^6.1.10
 
 dev_dependencies:
 
