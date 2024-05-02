@@ -1,8 +1,8 @@
 # Bookipidea
 
-A new Flutter project.
+A books app for reading, exploring and buying books.
 
-### I implemented it using:
+### Implemented it using:
 
 
 #### - Clean Architecture Pattern.
